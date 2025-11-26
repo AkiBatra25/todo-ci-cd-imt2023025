@@ -18,10 +18,6 @@ pipeline {
             steps {
                 bat """
                 where python
-                if %ERRORLEVEL% neq 0 (
-                    echo Python not found! Install Python manually on Jenkins machine.
-                    exit /b 1
-                )
                 python --version
                 pip --version
                 """
@@ -30,19 +26,19 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                bat "pip install --upgrade pip"
+                bat "python -m pip install --upgrade pip"
             }
         }
 
         stage('Install requirements') {
             steps {
-                bat "pip install -r requirements.txt"
+                bat "python -m pip install -r requirements.txt"
             }
         }
 
         stage('Run tests') {
             steps {
-                bat "pytest"
+                bat "python -m pytest"
             }
         }
 
