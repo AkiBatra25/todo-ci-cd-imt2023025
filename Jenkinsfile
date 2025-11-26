@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        python 'python3'   // This must match the name you added in Global Tool Configuration
+    }
 
     environment {
         IMAGE_NAME = "akibatra25/imt2023025-todo"
@@ -46,4 +49,5 @@ pipeline {
             }
         }
     }
+
 }
